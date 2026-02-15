@@ -17,41 +17,22 @@ int main(void)
     compare(n1,n2);
 }
 
-//这个对字母进行打分的函数有优化的空间，可以把每个字母对应的分数拎出来按顺序存到数组里，把字符同'A'相减得到整型数字（即为分数列表索引）
-
 int judge_s(string s)
 {
-    for(int i=0;s[i]!='\0';i++)
+    int sum = 0;
+
+    int values[] = {1,3,3,2,1,4,2,4,1,8,5,1,3,1,1,3,10,1,1,1,1,4,4,8,4,10};
+    int n=strlen(s);
+
+    for (int i = 0; i < n; i++)
     {
-        s[i]=toupper(s[i]);
-    }
+        char c = toupper(s[i]);
 
-    int sum=0;
-    int length=strlen(s);
-
-    string ls[]={"A1","B3","C3","D2","E1","F4","G2","H4","I1","J8","K5","L1","M3","N1","O1","P3","Q10","R1","S1","T1","U1","V4","W4","X8","Y4","Z10"};
-
-    for(int i=0;i<length;i++)
-    {
-        for(int j=0;j<26;j++)
+        if (isalpha(c))
         {
-            if(s[i]==ls[j][0])
-            {
-                if(s[i]=='Q')
-                {
-                    sum+=10;
-                    break;
-                }
-                else
-                {
-                    sum+=ls[j][1]-'0';
-                    break;
-                }
-
-            }
+            sum += values[c - 'A'];
         }
     }
-
     return sum;
 
 }
